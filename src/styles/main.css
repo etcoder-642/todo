@@ -1,43 +1,30 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 html, body {
-    border: 2px solid red;
     width: 100%;
     height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+    font: inherit;
+    outline: none;
+    border: none;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
 }
 
 .main {
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 50px 1fr;
-    border: 2px solid black;
+    grid-template-rows: 60px 1fr;
     height: 100%;
-}
-
-.displayBox {    
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    display: none;
-    transform: translate(-50%, -50%);
-    border: 2px solid green;
-    width: fit-content;
-    display: none;
-    flex-direction: column;
-    padding: 16px;
-
-    background-color: darkgreen;
-    color: aliceblue;
-}
-
-.close-displayBox {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
 }
 
 .inputList {
@@ -56,12 +43,21 @@ html, body {
     display: flex;
     justify-content: space-between;
     padding: 16px;
+    background: #e2eaf1;
+}
+
+.main_head {
+    font-size: 28px;
+    font-weight: 700;
+    color: #7d8388;
 }
 
 .container, .content {
     display: grid;
     grid-template-rows: 10% 90%;
-    border: 2px solid;
+}
+.content {
+    gap: 12px;
 }
 
 .content-header {
@@ -70,24 +66,177 @@ html, body {
     padding: 16px;
 }
 
+.content-header-title {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.content-header-btn {
+    height: fit-content;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background-color: #d9df9d;
+    color: grey;
+}
+
+.content-header-btn:hover {
+    background-color: #eff5b4;
+    color: black;
+}
+
 .card-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
     grid-auto-rows: min-content;
     justify-content: center;
-    gap: 8px;
+    gap: 28px;
 }
 
 .card {
-    border: 2px solid;
+    background: linear-gradient(#98d2c0);
+    border-radius: 12px;
+    color: white;
     height: fit-content;
     padding: 12px 36px 28px 12px;
 }
 
-.sidebar {
-    border: 2px solid;
+.basecard {
+    display: none;
 }
 
+.task-header {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+#desc, #priority, #date {
+    min-height: 28px;
+    border: 1px solid;
+    border-radius: 8px;
+    margin: 8px 0 16px 0;
+    padding: 4px 8px;
+}
+
+.card-element {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sidebar {
+    background: linear-gradient(#fff, #ecefca);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sidebar header strong {
+    display: block;
+    font-size: 24px;
+    margin: 12px 0 0 12px;
+}
+
+
+.list li {
+    list-style-type: none;
+    margin: 12px 4px 12px 24px;
+    padding: 5px 6px;
+    font-size: 18px;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.list li:hover {
+    background: #ecefca;
+}
+
+.sidebar button:last-child {
+    width: fit-content;
+    margin: 32px auto;
+    padding: 5px 12px;
+    border-radius: 5px;
+    background-color: #d9df9d;
+    color: grey;
+}
+
+.sidebar button:last-child:hover {
+    background-color: #eff5b4;
+    color: black;
+}
+
+/* Display box styles */
+
+
+.displayBox {    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    min-width: 320px;
+    display: none;
+    flex-direction: column;
+    padding: 32px;
+
+    background: linear-gradient(#213448, #547792);
+    border-radius: 12px;
+    color: aliceblue;
+}
+
+.displayBox header {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.displayBox  input, .displayBox select, .displayBox textarea {
+    font: inherit;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin: 4px 0px;
+    width: 100%;
+}
+
+.displayBox textarea { 
+    min-width: fit-content;
+}
+
+.displayBox ul, .displayBox ul li {
+    width: 100%;
+}
+
+.displayBox ul li:last-child {
+    text-align: center;
+}
+
+.displayBox button {
+    padding: 4px 24px;
+    font: inherit;
+    background-color: #94b4c1;
+    color: #213448;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+}
+
+.displayBox button:hover {
+    color: #ecefca;
+    background-color: #79949e;
+}
+
+
+.close-displayBox {
+    position: absolute;
+    font-size: 40px;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transform: translate(-50%, -10%);
+}
+
+.close-displayBox:hover {
+    color: red;
+}
 
 .overlay {
     display: none;

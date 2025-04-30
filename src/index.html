@@ -8,93 +8,42 @@
 <body>
     <div class="overlay"></div>
     <form class="displayBox">
-        <div class="close-displayBox">X</div>
+        <div class="close-displayBox">&times;</div>
         <header>Add Task</header>
         <ul class="inputList">
-            <li> 
-                <input type="text" id="task-name" placeholder="Name" required>
-            </li>
-            <li>
-                <textarea name="description" id="task-description" placeholder="Write some description for your task" required></textarea>
-            </li>
-            <li>
-                <label for="task-type">Type of the Task</label>
-                <select name="type" id="task-type" required>
-                    <option value="">One Time</option>
-                    <option value="">Daily</option>
-                    <option value="">Weekly</option>
-                </select>
-            </li>
-            <li>
-                <label for="dueDate">Due Date</label>
-                <input id="task-date" type="datetime-local" required>
-            </li>
-            <li>
-                <label for="task-priority">Priority</label>
-                <input type="range" required id="task-priority">
-            </li>
-            <li>
-                <button type="submit" class="submit">Add</button>
-            </li>
         </ul>
     </form>
     <div class="main">
         <div class="navbar">
-            <header class="sidebar_head">TODO</header>
+            <header class="main_head">toDo</header>
         </div>
         <div class="sidebar">
-            <button class="reduce">===</button>
+            <header>
+                <button class="reduce">=</button>
+                <strong>Projects</strong>
+            </header>
             <ul class="list">
-                <li>Project1</li>
-                <li>Project2</li>
-                <li>Project3</li>
+                <li class="sidebar-li">example</li>
             </ul>
+            <button class="sidebar-btn">+ New Project</button>
         </div>
         <div class="content">
-            <header class="content-header">List of Tasks
-                <button class="btn navbar-btn">Add Task</button>
+            <header class="content-header">
+                <div class="content-header-title">List of Tasks</div>
+                <button class="btn content-header-btn">+ Add Task</button>
             </header>
             <div class="card-wrapper">
                 <div class=" card basecard">
                     <header class="task-header">task xyz</header>
-                    <label for="desc">Task Description
-                        <p id="desc">xyz... blah blah blah.......</p>
+                    <label for="desc"><div class="card-element">Task Description</div>
+                        <p id="desc"></p>
                     </label>
-                    <div class="priority">priority</div>
-                    <label for="date">Due Date
-                        <div id="date">Date....</div>
-                    </label>
-                </div>
-                <div class="card">
-                    <header class="task-header">task xyz</header>
-                    <label for="desc">Task Description
-                        <p id="desc">xyz... blah blah blah.......</p>
-                    </label>
-                    <div class="priority">priority</div>
-                    <label for="date">Due Date
-                        <div id="date">Date....</div>
+                    <label for="priority" class="card-element">Priority</label>
+                    <div id="priority"></div>
+                    <label for="date"><div class="card-element">Due Date</div>
+                        <div id="date"></div>
                     </label>
                 </div>
-                <div class="card">
-                    <header class="task-header">task xyz</header>
-                    <label for="desc">Task Description
-                        <p id="desc">xyz... blah blah blah.......</p>
-                    </label>
-                    <div class="priority">priority</div>
-                    <label for="date">Due Date
-                        <div id="date">Date....</div>
-                    </label>
-                </div>
-                <div class="card">
-                    <header class="task-header">task xyz</header>
-                    <label for="desc">Task Description
-                        <p id="desc">xyz... blah blah blah.......</p>
-                    </label>
-                    <div class="priority">priority</div>
-                    <label for="date">Due Date
-                        <div id="date">Date....</div>
-                    </label>
-                </div>    
            </div>
         </div>
     </div>
