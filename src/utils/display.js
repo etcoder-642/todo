@@ -125,6 +125,20 @@ export const display = (()=>{
                 element.textContent = 'Hide';
             }
     
+        },
+        isSidebarShown: true,
+        showSideBar: function(){
+            if(display.isSidebarShown === true){
+                document.querySelector('.sidebar').style.display = 'none';
+                document.querySelector('.hidden-sidebar').style.display = 'block';
+                document.querySelector('.main').style.gridTemplateColumns = '65px 1fr';
+                display.isSidebarShown = false;
+            }else{
+                document.querySelector('.sidebar').style.display = 'flex';
+                document.querySelector('.hidden-sidebar').style.display = 'none';
+                document.querySelector('.main').style.gridTemplateColumns = '20% 80%';
+                display.isSidebarShown = true;
+            }
         }
     }
 })()

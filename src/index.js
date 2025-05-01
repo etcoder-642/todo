@@ -70,8 +70,6 @@ document.addEventListener('click', (e)=>{
         }
 
     }else if(e.target.className.includes('show-content')){
-        const dataId = e.target.parentElement
-
         let currentElement = e.target;
 
         while (currentElement && !currentElement.classList.contains('card')) {
@@ -79,6 +77,8 @@ document.addEventListener('click', (e)=>{
           }
     
         display.showOrHideCard(currentElement.dataset.projectId, e.target)
+    }else if(e.target.classList.contains('reduce')){
+        display.showSideBar();
     }
 })
 
