@@ -46,9 +46,9 @@ export const display = (()=>{
                 <label for="task-type">Type of the Task</label>
                 <select name="type" id="task-type" required>
                     <option value="">Choose a Type</option>
-                    <option value="">One Time</option>
-                    <option value="">Daily</option>
-                    <option value="">Weekly</option>
+                    <option value="One Time">One Time</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
                 </select>
             </li>
             <li>
@@ -57,12 +57,27 @@ export const display = (()=>{
             </li>
             <li>
                 <label for="task-priority">Priority</label>
-                <input type="range" required id="task-priority">
+                <select name="type" id="task-priority" required>
+                    <option value="">Choose your Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
             </li>
             <li>
                 <button type="submit" class="submit">Add</button>
             </li>
             `
+        },
+        triggerClickOnNewProject: function(newProjectElement) {
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,    // Allows the event to bubble up the DOM tree
+                cancelable: true, // Allows the default action of the event to be prevented
+                view: window      // Specifies the Window in which the event occurred
+              });
+            
+              // Dispatch the event on the new project element
+              newProjectElement.dispatchEvent(clickEvent);            
         },
         displayProject: function(obj){
             const list = document.querySelector('.list')
@@ -72,19 +87,44 @@ export const display = (()=>{
             li.textContent = obj.projectName;
 
             list.append(li);
+
+            display.triggerClickOnNewProject(li);
         },
         displayTask: function(obj){
             const card = document.querySelector('.basecard');
             const wrapper = document.querySelector('.card-wrapper');
             const clonedCard = card.cloneNode(true);
+            const btns = clonedCard.querySelector('.btns');
 
             clonedCard.style.display = 'block';
             clonedCard.querySelector('header').textContent = obj.title;
             clonedCard.querySelector('#desc').textContent = obj.description;
             clonedCard.querySelector('#priority').textContent = obj.priority;
+            clonedCard.querySelector('#type-of-task').textContent = obj.type;
             clonedCard.querySelector('#date').textContent = obj.dueDate;
 
+            clonedCard.setAttribute('data-project-id', obj.id)
+            btns.querySelector('.rmv').setAttribute('data-project-id', obj.id)
+            btns.querySelector('.complete').setAttribute('data-project-id', obj.id)
+
             wrapper.appendChild(clonedCard);
+        },
+        removeCard: function(dataId){
+            document.querySelector(`[data-project-id='${dataId}']`).remove();
+        },
+        completeCard: function(dataId) {
+            document.querySelector(`.card[data-project-id='${dataId}']`).style.textDecoration = 'line-through';
+        },
+        showOrHideCard: function(dataId, element) {
+            const card = document.querySelector(`.card[data-project-id='${dataId}']`);
+            if(element.textContent === 'Hide'){
+                card.querySelector('.card-content').style.display = 'none';
+                element.textContent = 'Show';
+            }else {
+                card.querySelector('.card-content').style.display = 'block';
+                element.textContent = 'Hide';
+            }
+    
         }
     }
 })()

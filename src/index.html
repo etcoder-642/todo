@@ -23,7 +23,6 @@
                 <strong>Projects</strong>
             </header>
             <ul class="list">
-                <li class="sidebar-li"></li>
             </ul>
             <button class="sidebar-btn">+ New Project</button>
         </div>
@@ -33,16 +32,27 @@
                 <button class="btn content-header-btn">+ Add Task</button>
             </header>
             <div class="card-wrapper">
-                <div class=" card basecard">
-                    <header class="task-header">task xyz</header>
-                    <label for="desc"><div class="card-element">Task Description</div>
-                        <p id="desc"></p>
-                    </label>
-                    <label for="priority" class="card-element">Priority</label>
-                    <div id="priority"></div>
-                    <label for="date"><div class="card-element">Due Date</div>
-                        <div id="date"></div>
-                    </label>
+                <div class="card basecard">
+                    <div class="card-header">
+                        <header class="task-header">task xyz</header>
+                        <div class="show-content">Hide</div>
+                    </div>
+                    <div class="card-content">
+                        <label for="desc"><div class="card-element">Task Description</div>
+                            <p id="desc"></p>
+                        </label>
+                        <label for="priority" class="card-element">Priority</label>
+                        <div id="priority"></div>
+                        <label for="type-of-task" class="card-element">Type of Task</label>
+                        <div id="type-of-task"></div>
+                        <label for="date"><div class="card-element">Due Date</div>
+                            <div id="date"></div>
+                        </label>    
+                    </div>
+                    <div class="btns">
+                        <button class="complete">Complete</button>
+                        <button class="rmv">Remove</button>
+                    </div>
                 </div>
            </div>
         </div>

@@ -8,9 +8,10 @@ export const creator = (()=>{
             const taskName = document.querySelector('#task-name');
             const taskDesc = document.querySelector('#task-description');
             const taskDate = document.querySelector('#task-date');
+            const taskType = document.querySelector('#task-type');
             const taskPrio = document.querySelector('#task-priority');
         
-            let returnTask = newProject.createTask(creator.currentProject, taskName.value, taskDesc.value, taskDate.value, taskPrio.value);
+            let returnTask = newProject.createTask(creator.currentProject, taskName.value, taskDesc.value, taskType.value, taskDate.value, taskPrio.value);
         
             console.log(returnTask)
             console.log(taskManager.projects)

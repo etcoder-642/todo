@@ -100,6 +100,21 @@ input:focus, textarea:focus, select:focus {
     padding: 12px 36px 28px 12px;
 }
 
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+}
+
+.card-content {
+    display: none;
+}
+
+.show-content {
+    cursor: pointer;
+}
+
 .basecard {
     display: none;
 }
@@ -107,10 +122,9 @@ input:focus, textarea:focus, select:focus {
 .task-header {
     font-size: 28px;
     font-weight: 500;
-    margin-bottom: 16px;
 }
 
-#desc, #priority, #date {
+#desc, #priority, #date, #type-of-task {
     min-height: 28px;
     border: 1px solid;
     border-radius: 8px;
@@ -121,6 +135,33 @@ input:focus, textarea:focus, select:focus {
 .card-element {
     font-size: 18px;
     font-weight: 500;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+}
+
+.complete, .rmv {
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+}
+
+.complete {
+    background: green;
+}
+
+.complete:hover {
+    background: #01a301;
+}
+
+.rmv {
+    background-color:red;
+}
+
+.rmv:hover {
+    background-color: #fd1f1f;
 }
 
 .sidebar {

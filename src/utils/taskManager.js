@@ -15,12 +15,13 @@ export default class taskManager{
             ];
     }
 
-    createTask(project, title, description, dueDate, priority){
+    createTask(project, title, description, type, dueDate, priority){
         for(let i=0;i<this.#taskManager.length;i++){
             if(project === this.#taskManager[i].projectName){
                 this.#taskManager[i].tasks.push({title,
                     description,
                     dueDate,
+                    type,
                     priority,
                     id: crypto.randomUUID()
                 });
