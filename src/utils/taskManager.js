@@ -23,7 +23,8 @@ export default class taskManager{
                     dueDate,
                     type,
                     priority,
-                    id: crypto.randomUUID()
+                    status: false,
+                    id: crypto.randomUUID(),
                 });
                 return this.#taskManager[i].tasks[
                     this.#taskManager[i].tasks.length - 1

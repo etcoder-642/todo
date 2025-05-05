@@ -96,6 +96,7 @@ export const display = (()=>{
             const clonedCard = card.cloneNode(true);
             const btns = clonedCard.querySelector('.btns');
 
+
             clonedCard.style.display = 'block';
             clonedCard.querySelector('header').textContent = obj.title;
             clonedCard.querySelector('#desc').textContent = obj.description;
@@ -106,6 +107,11 @@ export const display = (()=>{
             clonedCard.setAttribute('data-project-id', obj.id)
             btns.querySelector('.rmv').setAttribute('data-project-id', obj.id)
             btns.querySelector('.complete').setAttribute('data-project-id', obj.id)
+
+            if(obj.status){
+                clonedCard.style.textDecoration = 'line-through';
+                btns.querySelector('.rmv').style.textDecoration = 'none';
+            }
 
             wrapper.appendChild(clonedCard);
         },
@@ -139,6 +145,24 @@ export const display = (()=>{
                 document.querySelector('.main').style.gridTemplateColumns = '20% 80%';
                 display.isSidebarShown = true;
             }
+        },
+        handleDark: function(){
+            document.body.classList.add('dark-theme')
+            localStorage.setItem('theme', 'dark')
+
+            document.querySelector('.light').style.backgroundColor = '#c2c786';
+            document.querySelector('.light').style.fill = '#fff';
+            document.querySelector('.dark').style.backgroundColor = '#e9ecc3';
+            document.querySelector('.dark').style.fill = '#000';
+        },
+        handleLight: function(){
+            document.body.classList.remove('dark-theme')
+            localStorage.setItem('theme', 'light');
+
+            document.querySelector('.dark').style.backgroundColor = '';
+            document.querySelector('.dark').style.fill = '#fff';
+            document.querySelector('.light').style.backgroundColor = '#e9ecc3';
+            document.querySelector('.light').style.fill = '#000';
         }
     }
 })()

@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary-green: #328e6e;
+    --secondary-green: #67ae6e;
+    --teritiary-green: #90c67c;
+    --light-green: #a4d492;
+    --light-grey: #f0f0f0;
+    --light-text: #333333;
+    --light-accent: #808080;
+    --card-color: linear-gradient(#48b826, #95f847);
+}
+
+.dark-theme {
+    --primary-green: #003801;
+    --secondary-green: #16202a;
+    --teritiary-green: #1e6545;
+    --light-green: #338f66;
+    --light-grey: #192734;
+    --light-text: #333333;
+    --light-accent: #808080;
+    --text-color: #fff;
+    --card-color: linear-gradient(#066f2c, #0ca93e);
+}
+
+
+
 * {
     padding: 0;
     margin: 0;
@@ -7,8 +34,14 @@
 html, body {
     width: 100%;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
+body {
+    background-color: var(--light-grey);
+}
+
 
 button {
     font: inherit;
@@ -41,42 +74,64 @@ input:focus, textarea:focus, select:focus {
 .navbar {
     grid-column: 1 / -1;
     display: flex;
-    justify-content: space-between;
     padding: 16px;
-    background: #e2eaf1;
+    background: var(--primary-green);
+}
+
+#icon-dashboard {
+    display: inline;
+    fill: white;
+    font-size: 14px;
+    width: 48px;
+    height: 36px;
+    vertical-align: top;
 }
 
 .main_head {
     font-size: 28px;
     font-weight: 700;
-    color: #7d8388;
+    color: #fff;
 }
 
 /* Sidebar styles */
 
+.icon-list {
+    margin: 12px;
+    padding: 2px;
+    background-color: var(--teritiary-green);
+    fill: white;
+    width: 32px;
+    height: 32px;
+}
+
 .sidebar {
-    background: linear-gradient(#fff, #ecefca);
+    background: var(--secondary-green);
+    color: white;
     display: flex;
     flex-direction: column;
 }
 
 .hidden-sidebar {
     display: none;
-    background: linear-gradient(#fff, #ecefca);
+    background: var(--secondary-green);
 }
 
+.icon-project {
+    display: inline;
+    width: 32px;
+    height: 32px;
+    fill: white;
+    margin: 0;
+}
 
-.sidebar header strong {
-    display: block;
+.sidebar header .strong {
     font-size: 24px;
+    font-weight: 500;
     margin: 12px 0 0 12px;
-}
-
-.reduce {
-    font-size: 24px;
-    margin: 12px;
-    width: 36px;
-    height: 36px;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .list li {
@@ -84,12 +139,11 @@ input:focus, textarea:focus, select:focus {
     margin: 12px 4px 12px 24px;
     padding: 5px 6px;
     font-size: 18px;
-    font-weight: 500;
-    word-break: break-word;
+    cursor: pointer;
 }
 
 .list li:hover {
-    background: #ecefca;
+    background: var(--light-green);
 }
 
 .sidebar button:last-child {
@@ -97,53 +151,95 @@ input:focus, textarea:focus, select:focus {
     margin: 32px auto;
     padding: 5px 12px;
     border-radius: 5px;
-    background-color: #d9df9d;
-    color: grey;
+    background-color: var(--teritiary-green);
+    color: white;
 }
 
 .sidebar button:last-child:hover {
-    background-color: #eff5b4;
-    color: black;
+    background-color: var(--light-green);
 }
 
 /* content container styles */
 
 .content {
-    margin-left: 4px;
+    padding: 4px;
     display: grid;
-    grid-template-rows: 10% 90%;
-}
-.content {
-    gap: 12px;
+    grid-template-rows: 60px 1fr;
+    gap: 12px;    
+    box-shadow: inset 0 0 48px 4px rgba(0, 0, 0, 0.4);
 }
 
 .content-header {
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 8px;
+    color: var(--text-color);
 }
+
+.icon-tasks {
+    width: 36px;
+    height: 36px;
+    fill: var(--text-color);
+}
+
 
 .content-header-title {
     font-size: 25px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
+
+.content-header-side {
+    width: 280px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-mode {
+    width: 80px;
+    height: 100%;
+    border: 5px solid #d9df9d;
+    background-color: #c2c786;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.icon-theme {
+    width: 32px;
+    height: 30px;
+    fill: white;
+    padding: 4px;
+    border-radius: 50%;
+}
+
+.light {
+    fill: black;
+    background-color: #e9ecc3;
+} 
 
 .content-header-btn {
     height: fit-content;
     padding: 5px 12px;
     border-radius: 5px;
-    background-color: #d9df9d;
-    color: grey;
+    background-color: var(--teritiary-green);
+    color: var(--text-color);
 }
 
 .content-header-btn:hover {
-    background-color: #eff5b4;
-    color: black;
+    background-color: var(--light-green);
+    color: var(--text-color);
 }
 
 .card-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 300px));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 320px));
     grid-auto-rows: min-content;
     justify-content: center;
     gap: 28px;
@@ -151,7 +247,7 @@ input:focus, textarea:focus, select:focus {
 /* card styles */
 
 .card {
-    background: linear-gradient(#98d2c0);
+    background: var(--card-color);
     border-radius: 12px;
     color: white;
     height: fit-content;
@@ -163,6 +259,10 @@ input:focus, textarea:focus, select:focus {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 16px;
+}
+
+.card-content {
+    display: none;
 }
 
 
@@ -180,7 +280,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .task-header {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -190,11 +290,12 @@ input:focus, textarea:focus, select:focus {
     border-radius: 8px;
     margin: 8px 0 16px 0;
     padding: 4px 8px;
+    font-size: 12px;
 }
 
 .card-element {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .btns {
@@ -203,6 +304,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 .complete, .rmv {
+    font-size: 12px;
+    font-weight: 300;
     padding: 8px 16px;
     border-radius: 8px;
     color: white;
