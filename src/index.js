@@ -1,7 +1,6 @@
 import './styles/main.css'
 import { creator } from './utils/creator';
 import { display } from './utils/display';
-import taskManager from './utils/taskManager';
 
 document.addEventListener('DOMContentLoaded', ()=>{
     if(('theme' in localStorage)){
