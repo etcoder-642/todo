@@ -1,27 +1,25 @@
+export const display = (() => {
+  const dispBox = document.querySelector(".displayBox");
+  const overlay = document.querySelector(".overlay");
+  const cardWrapper = document.querySelector(".card-wrapper");
+  const inputList = dispBox.querySelector("ul");
 
-
-export const display = (()=>{
-    const dispBox = document.querySelector('.displayBox');
-    const overlay = document.querySelector('.overlay');
-    const cardWrapper = document.querySelector('.card-wrapper');
-    const inputList = dispBox.querySelector('ul');
-
-    return {
-        clearTasks: function () {
-            const taskCards = cardWrapper.querySelectorAll('.card:not(:first-child)');
-            taskCards.forEach(card => card.remove());
-        },
-        popUpMode: function(){
-            overlay.style.display = 'block';
-            dispBox.style.display = 'block';
-        },
-        normalMode: function(){
-            overlay.style.display = 'none';
-            dispBox.style.display = 'none';
-        },
-        isTaskModeActive: false,
-        newProjectMode: function(){
-            inputList.innerHTML = `
+  return {
+    clearTasks: function () {
+      const taskCards = cardWrapper.querySelectorAll(".card:not(:first-child)");
+      taskCards.forEach((card) => card.remove());
+    },
+    popUpMode: function () {
+      overlay.style.display = "block";
+      dispBox.style.display = "block";
+    },
+    normalMode: function () {
+      overlay.style.display = "none";
+      dispBox.style.display = "none";
+    },
+    isTaskModeActive: false,
+    newProjectMode: function () {
+      inputList.innerHTML = `
             <li> 
                 <input type="text" id="project-name" placeholder="Name of the Project" required>
             </li>
@@ -31,11 +29,11 @@ export const display = (()=>{
             <li>
                 <button type="submit" class="submit">Add</button>
             </li>
-            `
-            dispBox.querySelector('header').textContent = 'Add Project';
-        },
-        newTaskMode: function(){
-            inputList.innerHTML = `
+            `;
+      dispBox.querySelector("header").textContent = "Add Project";
+    },
+    newTaskMode: function () {
+      inputList.innerHTML = `
                         <li> 
                 <input type="text" id="task-name" placeholder="Name of the Task" required>
             </li>
@@ -67,102 +65,102 @@ export const display = (()=>{
             <li>
                 <button type="submit" class="submit">Add</button>
             </li>
-            `
-        },
-        triggerClickOnNewProject: function(newProjectElement) {
-            const clickEvent = new MouseEvent('click', {
-                bubbles: true,    // Allows the event to bubble up the DOM tree
-                cancelable: true, // Allows the default action of the event to be prevented
-                view: window      // Specifies the Window in which the event occurred
-              });
-            
-              // Dispatch the event on the new project element
-              newProjectElement.dispatchEvent(clickEvent);            
-        },
-        displayProject: function(obj){
-            const list = document.querySelector('.list')
-            const li = document.createElement('li');
-            li.classList.add('sidebar-li');
-            li.setAttribute('data-project-id', obj.id)
-            li.textContent = obj.projectName;
+            `;
+    },
+    triggerClickOnNewProject: function (newProjectElement) {
+      const clickEvent = new MouseEvent("click", {
+        bubbles: true, // Allows the event to bubble up the DOM tree
+        cancelable: true, // Allows the default action of the event to be prevented
+        view: window, // Specifies the Window in which the event occurred
+      });
 
-            list.append(li);
+      // Dispatch the event on the new project element
+      newProjectElement.dispatchEvent(clickEvent);
+    },
+    displayProject: function (obj) {
+      const list = document.querySelector(".list");
+      const li = document.createElement("li");
+      li.classList.add("sidebar-li");
+      li.setAttribute("data-project-id", obj.id);
+      li.textContent = obj.projectName;
 
-            display.triggerClickOnNewProject(li);
-        },
-        displayTask: function(obj){
-            const card = document.querySelector('.basecard');
-            const wrapper = document.querySelector('.card-wrapper');
-            const clonedCard = card.cloneNode(true);
-            const btns = clonedCard.querySelector('.btns');
+      list.append(li);
 
+      display.triggerClickOnNewProject(li);
+    },
+    displayTask: function (obj) {
+      const card = document.querySelector(".basecard");
+      const wrapper = document.querySelector(".card-wrapper");
+      const clonedCard = card.cloneNode(true);
+      const btns = clonedCard.querySelector(".btns");
 
-            clonedCard.style.display = 'block';
-            clonedCard.querySelector('header').textContent = obj.title;
-            clonedCard.querySelector('#desc').textContent = obj.description;
-            clonedCard.querySelector('#priority').textContent = obj.priority;
-            clonedCard.querySelector('#type-of-task').textContent = obj.type;
-            clonedCard.querySelector('#date').textContent = obj.dueDate;
+      clonedCard.style.display = "block";
+      clonedCard.querySelector("header").textContent = obj.title;
+      clonedCard.querySelector("#desc").textContent = obj.description;
+      clonedCard.querySelector("#priority").textContent = obj.priority;
+      clonedCard.querySelector("#type-of-task").textContent = obj.type;
+      clonedCard.querySelector("#date").textContent = obj.dueDate;
 
-            clonedCard.setAttribute('data-project-id', obj.id)
-            btns.querySelector('.rmv').setAttribute('data-project-id', obj.id)
-            btns.querySelector('.complete').setAttribute('data-project-id', obj.id)
+      clonedCard.setAttribute("data-project-id", obj.id);
+      btns.querySelector(".rmv").setAttribute("data-project-id", obj.id);
+      btns.querySelector(".complete").setAttribute("data-project-id", obj.id);
 
-            if(obj.status){
-                clonedCard.style.textDecoration = 'line-through';
-                btns.querySelector('.rmv').style.textDecoration = 'none';
-            }
+      if (obj.status) {
+        clonedCard.style.textDecoration = "line-through";
+        btns.querySelector(".rmv").style.textDecoration = "none";
+      }
 
-            wrapper.appendChild(clonedCard);
-        },
-        removeCard: function(dataId){
-            document.querySelector(`[data-project-id='${dataId}']`).remove();
-        },
-        completeCard: function(dataId) {
-            document.querySelector(`.card[data-project-id='${dataId}']`).style.textDecoration = 'line-through';
-        },
-        showOrHideCard: function(dataId, element) {
-            const card = document.querySelector(`.card[data-project-id='${dataId}']`);
-            if(element.textContent === 'Hide'){
-                card.querySelector('.card-content').style.display = 'none';
-                element.textContent = 'Show';
-            }else {
-                card.querySelector('.card-content').style.display = 'block';
-                element.textContent = 'Hide';
-            }
-    
-        },
-        isSidebarShown: true,
-        showSideBar: function(){
-            if(display.isSidebarShown === true){
-                document.querySelector('.sidebar').style.display = 'none';
-                document.querySelector('.hidden-sidebar').style.display = 'block';
-                document.querySelector('.main').style.gridTemplateColumns = '65px 1fr';
-                display.isSidebarShown = false;
-            }else{
-                document.querySelector('.sidebar').style.display = 'flex';
-                document.querySelector('.hidden-sidebar').style.display = 'none';
-                document.querySelector('.main').style.gridTemplateColumns = '20% 80%';
-                display.isSidebarShown = true;
-            }
-        },
-        handleDark: function(){
-            document.body.classList.add('dark-theme')
-            localStorage.setItem('theme', 'dark')
+      wrapper.appendChild(clonedCard);
+    },
+    removeCard: function (dataId) {
+      document.querySelector(`[data-project-id='${dataId}']`).remove();
+    },
+    completeCard: function (dataId) {
+      document.querySelector(
+        `.card[data-project-id='${dataId}']`,
+      ).style.textDecoration = "line-through";
+    },
+    showOrHideCard: function (dataId, element) {
+      const card = document.querySelector(`.card[data-project-id='${dataId}']`);
+      if (element.textContent === "Hide") {
+        card.querySelector(".card-content").style.display = "none";
+        element.textContent = "Show";
+      } else {
+        card.querySelector(".card-content").style.display = "block";
+        element.textContent = "Hide";
+      }
+    },
+    isSidebarShown: true,
+    showSideBar: function () {
+      if (display.isSidebarShown === true) {
+        document.querySelector(".sidebar").style.display = "none";
+        document.querySelector(".hidden-sidebar").style.display = "block";
+        document.querySelector(".main").style.gridTemplateColumns = "65px 1fr";
+        display.isSidebarShown = false;
+      } else {
+        document.querySelector(".sidebar").style.display = "flex";
+        document.querySelector(".hidden-sidebar").style.display = "none";
+        document.querySelector(".main").style.gridTemplateColumns = "20% 80%";
+        display.isSidebarShown = true;
+      }
+    },
+    handleDark: function () {
+      document.body.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
 
-            document.querySelector('.light').style.backgroundColor = '#c2c786';
-            document.querySelector('.light').style.fill = '#fff';
-            document.querySelector('.dark').style.backgroundColor = '#e9ecc3';
-            document.querySelector('.dark').style.fill = '#000';
-        },
-        handleLight: function(){
-            document.body.classList.remove('dark-theme')
-            localStorage.setItem('theme', 'light');
+      document.querySelector(".light").style.backgroundColor = "#c2c786";
+      document.querySelector(".light").style.fill = "#fff";
+      document.querySelector(".dark").style.backgroundColor = "#e9ecc3";
+      document.querySelector(".dark").style.fill = "#000";
+    },
+    handleLight: function () {
+      document.body.classList.remove("dark-theme");
+      localStorage.setItem("theme", "light");
 
-            document.querySelector('.dark').style.backgroundColor = '';
-            document.querySelector('.dark').style.fill = '#fff';
-            document.querySelector('.light').style.backgroundColor = '#e9ecc3';
-            document.querySelector('.light').style.fill = '#000';
-        }
-    }
-})()
+      document.querySelector(".dark").style.backgroundColor = "";
+      document.querySelector(".dark").style.fill = "#fff";
+      document.querySelector(".light").style.backgroundColor = "#e9ecc3";
+      document.querySelector(".light").style.fill = "#000";
+    },
+  };
+})();
