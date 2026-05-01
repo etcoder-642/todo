@@ -1,5 +1,8 @@
 # TODO App Documentation
 
+*The project is directly hosted on github pages you can test it out right now using this link*
+https://etcoder-642.github.io/todo/
+
 ## Introduction
 
 This document provides a comprehensive overview of the TODO application's architecture, functionality, and data flow. It is designed to be understandable by both technical and non-technical audiences. The application allows users to manage projects and tasks.
@@ -13,6 +16,20 @@ The TODO app allows you to:
 - View project and task details.
 - Persist data between sessions using local storage.
 - Switch between light and dark themes.
+
+## Visual Demo
+
+- Light Theme
+
+<img width="1917" height="873" alt="image" src="https://github.com/user-attachments/assets/568f0170-114d-4491-be13-6b0661899d04" />
+
+- Dark Theme
+
+<img width="1912" height="835" alt="image" src="https://github.com/user-attachments/assets/92c85d4e-3ccb-416e-9460-4dd83df112fa" />
+
+- Adding a new task
+
+<img width="1215" height="801" alt="image" src="https://github.com/user-attachments/assets/46e9dca7-1874-45d8-93c0-052d5b6bd14b" />
 
 ## Modules and Components
 
